@@ -40,7 +40,7 @@ public class Gmail extends Email {
 
         if(inbox.size() >= inboxCapacity){
             trash.add(inbox.get(0)); //moving oldest mail to trash
-            inbox.remove(0); //removing oldest mail from inbox
+           // inbox.remove(0); //removing oldest mail from inbox
         }
 
         inbox.add(new Mail(date, sender, message)); //adding new mail to the inbox
@@ -89,14 +89,12 @@ public class Gmail extends Email {
 
         for(Mail m: inbox){
             Date mailDate = m.date;
-            Date startDate = start;
-            Date endDate = end;
 
-            if(mailDate.after(startDate) && mailDate.before(endDate)){
+            if(mailDate.after(start) && mailDate.before(end)){
                 count++;
             }
 
-            if(mailDate.equals(startDate) || mailDate.equals(endDate)) count++;
+            if(mailDate.equals(start) || mailDate.equals(end)) count++;
         }
 
         return count;
