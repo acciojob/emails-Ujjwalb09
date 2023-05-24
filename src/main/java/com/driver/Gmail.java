@@ -53,7 +53,6 @@ public class Gmail extends Email {
         for(Mail m: inbox){
             if(Objects.equals(m.message, message)){
                 trash.add(m);
-                inbox.remove(m);
             }
         }
 
@@ -89,13 +88,15 @@ public class Gmail extends Email {
         int count = 0;
 
         for(Mail m: inbox){
-            int mailDate = Integer.parseInt(String.valueOf(m.date));
-            int startDate = Integer.parseInt(String.valueOf(start));
-            int endDate = Integer.parseInt(String.valueOf(end));
+            Date mailDate = m.date;
+            Date startDate = start;
+            Date endDate = end;
 
-            if(mailDate >= startDate && mailDate <= endDate){
+            if(mailDate.after(startDate) && mailDate.before(endDate)){
                 count++;
             }
+
+            if(mailDate.equals(startDate) || mailDate.equals(endDate)) count++;
         }
 
         return count;
