@@ -53,6 +53,8 @@ public class Gmail extends Email {
         for(Mail m: inbox){
             if(Objects.equals(m.message, message)){
                 trash.add(m);
+                inbox.remove(m);
+                return;
             }
         }
 
@@ -85,16 +87,19 @@ public class Gmail extends Email {
         //find number of mails in the inbox which are received between given dates
         //It is guaranteed that start date <= end date
 
-        int sum = 0;
-        for(int i=0;i<inbox.size();i++){
-            Date t = inbox.get(i).date;
-            if(t.after(start) && t.before(end)){
-                sum++;
+        int count = 0;
+
+        for(Mail m: inbox){
+            Date mailDate = m.date;
+
+            if(mailDate.after(start) && mailDate.before(end)){
+                count++;
             }
-            if(t.equals(start) || t.equals(end))
-                sum++;
+
+            if(mailDate.equals(start) || mailDate.equals(end)) count++;
         }
-        return sum;
+
+        return count;
     }
 
     public int getInboxSize(){
