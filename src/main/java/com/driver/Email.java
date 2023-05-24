@@ -36,19 +36,20 @@ public class Email {
                 checks[0]=true;
             }
 
-            for(int i = 0; i < newPassword.length(); i++)
-            {
+            for(int i = 0; i < newPassword.length(); i++) {
                 char c = newPassword.charAt(i);
 
-                if(c>='A' && c<='Z'){ //ascii range of uppercase letter are 65-90
+                if (c >= 'A' && c <= 'Z') { //ascii range of uppercase letter are 65-90
                     checks[1] = true;
-                } else if(c>='a' && c<='z'){ //ascii range of lowercase letter are 97-122
+                } else if (c >= 'a' && c <= 'z') { //ascii range of lowercase letter are 97-122
                     checks[2] = true;
-                } else if(c >= '0' && c <= '9'){
+                } else if (c >= '0' && c <= '9') {
                     checks[3] = true;
                 } else {
                     checks[4] = true;
                 }
+
+            }
 
                 for(boolean b : checks){
                     if(!b){
@@ -57,7 +58,6 @@ public class Email {
                 }
 
                 password = newPassword;
-            }
         }
     }
 }
